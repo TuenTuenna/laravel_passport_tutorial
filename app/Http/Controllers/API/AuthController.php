@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -62,8 +63,10 @@ class AuthController extends Controller
 
         $tokenResponse = json_decode((string) $response->getBody(), true);
 
+        $createdUser = new UserResource($user);
+
         return response()->json([
-            'user' => $user,
+            'user' => $createdUser,
             'token' => $tokenResponse
         ], \Symfony\Component\HttpFoundation\Response::HTTP_CREATED);
     }
@@ -104,8 +107,10 @@ class AuthController extends Controller
 
         $tokenResponse = json_decode((string) $response->getBody(), true);
 
+        $fetchedUser = new UserResource(Auth::user());
+
         return response()->json([
-            'user' => Auth::user(),
+            'user' => $fetchedUser,
             'token' => $tokenResponse
         ], \Symfony\Component\HttpFoundation\Response::HTTP_OK);
 
@@ -155,5 +160,4 @@ class AuthController extends Controller
             ], \Symfony\Component\HttpFoundation\Response::HTTP_OK);
         }
     }
-
 }
