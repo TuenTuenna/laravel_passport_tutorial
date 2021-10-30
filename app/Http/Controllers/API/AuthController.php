@@ -107,7 +107,7 @@ class AuthController extends Controller
         return response()->json([
             'user' => Auth::user(),
             'token' => $tokenResponse
-        ], \Symfony\Component\HttpFoundation\Response::HTTP_CREATED);
+        ], \Symfony\Component\HttpFoundation\Response::HTTP_OK);
 
     }
 
