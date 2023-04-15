@@ -27,7 +27,6 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         // 패스포트 라우트 설정
-        Passport::routes();
 
         // 토큰 만료시간 설정
 //        Passport::tokensExpireIn(now()->addDays(15));
